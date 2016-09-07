@@ -1,0 +1,52 @@
+#include <windows.h>
+
+#include "IDS.h"
+
+Icono ICON "Simulacion_Montecarlo.ico"
+
+Menu MENU
+BEGIN
+POPUP "&Selección Sistema Automático"
+ BEGIN
+  MENUITEM "&Elite CAC 40 10'", CM_ELITE_10
+  MENUITEM "&Perseus_2032 CAC 40 20'", CM_PERSEUS_2032
+  MENUITEM "&Combinación de Ambos", CM_COMBINACION
+  MENUITEM "&Salir", CM_EXIT
+ END
+ POPUP "&Simulación Montecarlo del Sistema Automático"
+ BEGIN
+  MENUITEM "&Plot Simulación Drawdown Máximo", CM_PLOT_DRAWDOWN
+  MENUITEM "&Histograma Simulación Drawdown Máximo", CM_HISTO_DRAWADOWN
+  MENUITEM "&Plot Simulación Beneficio Máximo", CM_PLOT_BENEFMAX
+  MENUITEM "&Histograma Simulación Beneficio Máximo", CM_HISTO_BENEFMAX
+ END
+ POPUP "&Selección Número Años Simulación"
+ BEGIN
+  MENUITEM "&Introducir Número de Años:", CM_DIALOGO
+ END
+ 
+END
+
+
+DialogoPrueba DIALOG 260, 0, 118, 48
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+//STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Introducir Número de Años:"
+FONT 8, "Helv"
+BEGIN
+ CONTROL "Nº Años:", -1, "STATIC", 
+    SS_LEFT | WS_CHILD | WS_VISIBLE, 
+    8, 9, 28, 8
+ CONTROL "", ID_TEXTO, "EDIT", 
+    ES_LEFT | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP, 
+    36, 9, 76, 12
+ CONTROL "Aceptar", IDOK, "BUTTON", 
+    BS_DEFPUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 
+    8, 26, 45, 14
+ CONTROL "Cancelar", IDCANCEL, "BUTTON", 
+    BS_PUSHBUTTON | BS_CENTER | WS_CHILD | WS_VISIBLE | WS_TABSTOP, 
+    61, 26, 45, 14
+END
+
+
+

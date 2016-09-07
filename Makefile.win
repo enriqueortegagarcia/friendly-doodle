@@ -1,0 +1,45 @@
+# Project: Simulacion_Montecarlo
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = C:\Dev-Cpp\bin\g++.exe
+CC   = C:\Dev-Cpp\bin\gcc.exe
+WINDRES = C:\Dev-Cpp\bin\windres.exe
+RES  = Grafico_Bolsa_private.res
+OBJ  = Simulacion_Montecarlo.o LeerElementos.o plotint.o montecarlo.o plotnormal.o $(RES)
+LINKOBJ  = Simulacion_Montecarlo.o LeerElementos.o plotint.o montecarlo.o plotnormal.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib" -mwindows  
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = Simulacion_Montecarlo.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before Simulacion_Montecarlo.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "Simulacion_Montecarlo.exe" $(LIBS)
+
+Simulacion_Montecarlo.o: Simulacion_Montecarlo.c
+	$(CC) -c Simulacion_Montecarlo.c -o Simulacion_Montecarlo.o $(CFLAGS)
+
+LeerElementos.o: LeerElementos.c
+	$(CC) -c LeerElementos.c -o LeerElementos.o $(CFLAGS)
+
+plotint.o: plotint.c
+	$(CC) -c plotint.c -o plotint.o $(CFLAGS)
+
+montecarlo.o: montecarlo.c
+	$(CC) -c montecarlo.c -o montecarlo.o $(CFLAGS)
+
+plotnormal.o: plotnormal.c
+	$(CC) -c plotnormal.c -o plotnormal.o $(CFLAGS)
+
+Grafico_Bolsa_private.res: Grafico_Bolsa_private.rc Simulacion_Montecarlo.rc 
+	$(WINDRES) -i Grafico_Bolsa_private.rc --input-format=rc -o Grafico_Bolsa_private.res -O coff 
